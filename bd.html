@@ -120,10 +120,6 @@
                 Administradores ||--o{ Clientes : "cria"
                 Administradores ||--o{ Gestores : "cria"
 
-                %% ─── PERMISSÕES ─────────────────────────────────────────────────
-                Administradores ||--o{ Permissoes : "define"
-                Permissoes }o--|| Utilizadores : "aplica-se a"
-
                 %% ─── AVALIAÇÃO DE RISCO ──────────────────────────────────────────
                 Clientes ||--o| AvaliacaoRisco : "possui"
                 Gestores ||--o{ AvaliacaoRisco : "gere"
@@ -186,7 +182,7 @@
                 string password_hash
                 string nome_completo
                 string telefone
-                boolean estado
+                boolean ativo
                 date data_criacao
                 }
 
@@ -222,15 +218,6 @@
                 string nome
                 string email
                 string telefone
-                }
-
-                Permissoes {
-                int id_permissao PK
-                int id_utilizador FK
-                int id_administrador FK
-                string tipo_permissao
-                boolean ativa
-                date data_revogacao
                 }
 
 
