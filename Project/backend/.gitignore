@@ -1,0 +1,27 @@
+# dependências
+node_modules/
+
+# ambiente
+.env
+.env.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# logs extras
+logs/
+*.log
+
+# arquivos de build (caso use depois)
+dist/
+build/
+
+# sistema
+.DS_Store
+
+database.sqlite
+*.sqlite
+*.sqlite3
+dump.sql
