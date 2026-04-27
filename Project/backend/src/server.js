@@ -14,3 +14,11 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
+
+const sequelize = require("./config/database");
+
+sequelize.sync()
+  .then(() => {
+    console.log("Tabelas criadas com sucesso");
+  })
+  .catch(err => console.error(err));
