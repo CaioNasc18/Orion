@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const User = require("./models/Users");
+const Usera = require("./models/User");
 
 const app = express();
 
@@ -14,6 +16,7 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");
 });
+
 
 const sequelize = require("./config/database");
 
