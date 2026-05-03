@@ -7,7 +7,6 @@ const Request = sequelize.define('Request', {
         primaryKey: true,
         autoIncrement: true
     },
-
     requestTypeId: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -25,17 +24,24 @@ const Request = sequelize.define('Request', {
 
     subject: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
 
     description: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
 
     status: {
-        type: DataTypes.STRING,
-        defaultValue: 'open'
+        type: DataTypes.ENUM('open', 'in_progress', 'closed'),
+        defaultValue: 'open',
+        allowNull: false
     },
 
     openedAt: {
@@ -47,6 +53,7 @@ const Request = sequelize.define('Request', {
         type: DataTypes.DATE,
         allowNull: true
     }
+
 }, {
     tableName: 'requests',
     timestamps: false
