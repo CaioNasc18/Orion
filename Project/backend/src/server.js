@@ -3,6 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const UserT = require("./models/UserType");
 const User = require("./models/User");
+const Company = require("./models/Company");
+const Logs = require("./models/Logs");
+
 
 const app = express();
 
