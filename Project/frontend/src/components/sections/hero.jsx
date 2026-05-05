@@ -1,12 +1,33 @@
 function Hero() {
   return (
-    <section className="bg-dark text-white py-5">
+    <section 
+      className="text-white py-5"
+      style={{ background: "linear-gradient(to right, #2c3e50, #3c8dbc)" }}
+    >
       <div className="container">
-        <h1>Cibersegurança para organizações</h1>
-        <p>Num contexto em que os ataques aumentam todos os dias...</p>
-        <button className="btn btn-outline-light">
-          Contactar
-        </button>
+        <div className="row align-items-center">
+          
+          {/* Texto */}
+          <div className="col-md-6">
+            <h1 className="display-4 fw-bold mb-4">
+              Cibersegurança para organizações
+            </h1>
+            <p className="lead mb-4">
+              Num contexto em que os ataques aumentam todos os dias, protegemos a sua organização com soluções avançadas.
+            </p>
+            <button className="btn btn-light btn-lg">
+              Contactar
+            </button>
+          </div>
+
+          {/* Lado direito */}
+          <div className="col-md-6 text-center">
+            <div className="bg-light text-dark d-flex align-items-center justify-content-center" style={{ height: "200px" }}>
+              Imagem / Ilustração
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
