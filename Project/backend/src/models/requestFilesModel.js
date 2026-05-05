@@ -25,4 +25,4 @@ const RequestFile = sequelize.define('RequestFile', {
     }
 });
 
-module.exports = RequestType;
+module.exports = RequestFile;
