@@ -32,6 +32,8 @@ const Logs = sequelize.define("Logs", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
+}, {
+    timestamps: false
+  },);
 
 module.exports = Logs;
