@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("API rodando 🚀");
+  res.send("API rodando 🚀"); //prof de AI disse que isto não pode estar aqui
 });
 
 app.listen(3000, () => {
