@@ -7,11 +7,13 @@ const UserT = sequelize.define("UserType", {
     autoIncrement: true,
     primaryKey: true,
   },
-
   designacao: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
+}, {
+  timestamps: false
 });
 
 module.exports = UserT;
