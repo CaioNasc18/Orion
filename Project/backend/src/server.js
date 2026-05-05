@@ -3,6 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const UserT = require("./models/UserType");
 const User = require("./models/User");
+const Request = require("./models/requestModel.js");
+const RequestType = require("./models/requestTypeModel.js");
+const RequestFile = require("./models/requestFilesModel.js");
 
 const app = express();
 
