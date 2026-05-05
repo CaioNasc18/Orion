@@ -12,6 +12,9 @@ const Company = sequelize.define("Company", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
+}, {
+    timestamps: false
+}
+);
 
 module.exports = Company;

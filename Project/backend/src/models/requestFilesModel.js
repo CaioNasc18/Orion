@@ -7,10 +7,6 @@ const RequestFile = sequelize.define('RequestFile', {
         primaryKey: true,
         autoIncrement: true
     },
-    requestId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
     fileName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -23,6 +19,8 @@ const RequestFile = sequelize.define('RequestFile', {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
     }
+}, {
+    timestamps: false
 });
 
 module.exports = RequestFile;
