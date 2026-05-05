@@ -7,28 +7,28 @@ import Footer from "../components/Footer";
 const methodology = [
   {
     title: "ISO/IEC 27001",
-    description: "International standard for information security management",
+    description: "Norma internacional para gestão de segurança da informação",
     color: "#3b82f6",
     bg: "#eaf2ff",
     icon: "🛡️",
   },
   {
     title: "NIST FRAMEWORK",
-    description: "Framework for cybersecurity from the National Institute of Standards and Technology",
+    description: "Framework de cibersegurança do National Institute of Standards and Technology",
     color: "#16a34a",
     bg: "#eaf7ee",
     icon: "📊",
   },
   {
     title: "CIS CONTROLS",
-    description: "Prioritized set of actions for defense against cyber threats",
+    description: "Conjunto prioritário de ações para defesa contra ameaças cibernéticas",
     color: "#9333ea",
     bg: "#f3e8ff",
     icon: "🎯",
   },
   {
     title: "ENISA GUIDELINES",
-    description: "Recommendations from the European Union Agency for Cybersecurity",
+    description: "Recomendações da Agência Europeia para Segurança Cibernética",
     color: "#ea580c",
     bg: "#fff3e8",
     icon: "🏅",
