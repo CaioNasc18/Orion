@@ -1,61 +1,28 @@
+import { Link } from 'react-router-dom';
+
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <nav className="navbar navbar-expand bg-white shadow-sm">
       <div className="container">
-        
+
         {/* Logo */}
-        <a className="navbar-brand fw-bold" href="#">
+        <Link className="navbar-brand fw-bold" to="/">
           CyberBox
-        </a>
+        </Link>
 
-        {/* Botão mobile */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <ul className="navbar-nav ms-auto align-items-center">
+          <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/services">Services</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/nis2">NIS2</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/sectors">Sectors</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/methodology">Methodology</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/news">News</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/contacts">Contacts</Link></li>
+          <li className="nav-item ms-2">
+            <Link className="btn btn-primary" to="/login">Área de Cliente</Link>
+          </li>
+        </ul>
 
-        {/* Links */}
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            
-            <li className="nav-item">
-              <a className="nav-link" href="#">Home</a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="#">Services</a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="#">NIS2</a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="#">Sectors</a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="#">Methodology</a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="#">News</a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="#">Contacts</a>
-            </li>
-
-            <button className="btn btn-light btn-lg">
-              Área de Cliente
-            </button>
-
-          </ul>
-        </div>
       </div>
     </nav>
   );

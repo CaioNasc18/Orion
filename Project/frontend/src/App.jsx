@@ -7,22 +7,22 @@ import Methodology from "./pages/methodology";
 import News from "./pages/news";
 import Contact from "./pages/contact";
 import ClientArea from "./pages/clientArea";
-//import Login from "./pages/login";
+import Login from "./pages/login";
 import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/servicos" element={<Services />} />
-        <Route path="/nis2" element={<NIS2 />} />
-        <Route path="/setores" element={<Sectors />} />
-        <Route path="/metodologia" element={<Methodology />} />
-        <Route path="/noticias" element={<News />} />
-        <Route path="/contacto" element={<Contact />} />
-        <Route path="/area-cliente" element={<ClientArea />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/"element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/NIS2" element={<NIS2 />} />
+        <Route path="/sectors" element={<Sectors />} />
+        <Route path="/methodology" element={<Methodology />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/clientArea" element={<ClientArea />} />
+        { <Route path="/login" element={<Login />} /> }
       </Routes>
     </BrowserRouter>
   );
