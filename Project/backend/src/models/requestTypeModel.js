@@ -10,7 +10,10 @@ const RequestType = sequelize.define('RequestType', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+}
+, {
+       timestamps: false
 });
 
 module.exports = RequestType;

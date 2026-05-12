@@ -7,20 +7,6 @@ const Request = sequelize.define('Request', {
         primaryKey: true,
         autoIncrement: true
     },
-    requestTypeId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-
-    creatorId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-
-    assignedToId: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-    },
 
     subject: {
         type: DataTypes.STRING,
