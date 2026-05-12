@@ -57,11 +57,23 @@ const request_create = async (req, res) => {
             creatorId,
             assignedToId,
             subject,
-            description
+            description,
+            subtype
         } = req.body;
 
         if (!requestTypeId || !creatorId || !subject || !description) {
             return res.status(400).json({ message: 'Missing required fields' });
+        }
+
+        // ✅ Validação do subtype para pedidos do tipo "Others"
+        const requestType = await RequestType.findByPk(requestTypeId);
+
+        if (!requestType) {
+            return res.status(404).json({ message: 'Request type not found' });
+        }
+
+        if (requestType.name === 'Others' && (!subtype || subtype.trim() === '')) {
+            return res.status(400).json({ message: 'Subtype é obrigatório para pedidos do tipo Others' });
         }
 
         const newRequest = await Request.create({
@@ -70,6 +82,7 @@ const request_create = async (req, res) => {
             assignedToId: assignedToId || null,
             subject,
             description,
+            subtype: requestType.name === 'Others' ? subtype.trim() : null,
             status: 'open',
             openedAt: new Date()
         });
@@ -88,10 +101,27 @@ const request_update = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const request = await Request.findByPk(id);
+        const request = await Request.findByPk(id, {
+            include: [{ model: RequestType }]
+        });
 
         if (!request) {
             return res.status(404).json({ message: 'Request not found' });
+        }
+
+        // ✅ Validação do subtype caso o requestTypeId seja alterado ou já seja "Others"
+        const newRequestTypeId = req.body.requestTypeId || request.requestTypeId;
+        const requestType = await RequestType.findByPk(newRequestTypeId);
+
+        if (requestType.name === 'Others') {
+            const newSubtype = req.body.subtype || request.subtype;
+            if (!newSubtype || newSubtype.trim() === '') {
+                return res.status(400).json({ message: 'Subtype é obrigatório para pedidos do tipo Others' });
+            }
+            req.body.subtype = newSubtype.trim();
+        } else {
+            // Se mudou de Others para outro tipo, limpa o subtype
+            req.body.subtype = null;
         }
 
         await request.update(req.body);

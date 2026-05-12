@@ -6,8 +6,8 @@ async function seedUserTypes() {
   if (count === 0) {
     await TipoUtilizador.bulkCreate([
       { designacao: "Admin" },
-      { designacao: "User" },
-      { designacao: "Guest" },
+      { designacao: "Client" },
+      { designacao: "Manager" },
     ]);
 
     console.log("Tipos de utilizador criados 🚀");

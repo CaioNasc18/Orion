@@ -8,6 +8,8 @@ async function seedRequestTypes() {
       { name: "ReportIncident" },
       { name: "Pentest" },
       { name: "Documentation" },
+      { name: "Technological assets" },
+      { name: "Others" },
     ]);
 
     console.log("Tipos de pedido criados 🚀");
