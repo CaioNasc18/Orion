@@ -4,6 +4,9 @@ const Company = require("./company");
 const Request = require("./requestModel");
 const RequestType = require("./requestTypeModel");
 const RequestFile = require("./requestFilesModel");
+const Question = require("./questions");
+const MessageQuestion = require("./messagesQuestions");
+
 
 function applyAssociations() {
 
@@ -17,13 +20,15 @@ function applyAssociations() {
 
   //------------------------------//
 
-  // Company <-> User 
-  Company.hasMany(User, {
+// Company <-> User
+Company.hasMany(User, {
     foreignKey: "id_empresa",
-  });
-  User.belongsTo(Company, {
+    as: "users"
+});
+User.belongsTo(Company, {
     foreignKey: "id_empresa",
-  });
+    as: "company"
+});
 
   //------------------------------//
 
@@ -69,6 +74,55 @@ function applyAssociations() {
   RequestFile.belongsTo(Request, {
     foreignKey: "requestId",
   });
+
+  //------------------------------//
+
+  // User (creator) <-> Question
+User.hasMany(Question, {
+    foreignKey: "creatorId",
+    as: "createdQuestions"
+});
+Question.belongsTo(User, {
+    foreignKey: "creatorId",
+    as: "creator"
+});
+
+//-------------------------------//
+
+// User (assignedTo) <-> Question
+User.hasMany(Question, {
+    foreignKey: "assignedToId",
+    as: "assignedQuestions"
+});
+Question.belongsTo(User, {
+    foreignKey: "assignedToId",
+    as: "assignedTo"
+});
+
+//-------------------------------//
+
+// Question <-> MessageQuestion
+Question.hasMany(MessageQuestion, {
+    foreignKey: "questionId",
+    as: "messages"
+});
+MessageQuestion.belongsTo(Question, {
+    foreignKey: "questionId"
+});
+
+//-------------------------------//
+
+// User <-> MessageQuestion
+User.hasMany(MessageQuestion, {
+    foreignKey: "userId",
+    as: "sentMessages"
+});
+MessageQuestion.belongsTo(User, {
+    foreignKey: "userId",
+    as: "sender"
+});
+  
+//-------------------------------//
 
 }
 
