@@ -6,6 +6,8 @@ const RequestType = require("./requestTypeModel");
 const RequestFile = require("./requestFilesModel");
 const Question = require("./questions");
 const MessageQuestion = require("./messagesQuestions");
+const EstadoPedido = require("./requestStatus");
+const Logs = require("./Logs");
 
 
 function applyAssociations() {
@@ -122,6 +124,41 @@ MessageQuestion.belongsTo(User, {
     as: "sender"
 });
   
+//-------------------------------//
+
+// Request <-> EstadoPedido
+Request.hasMany(EstadoPedido, {
+    foreignKey: "requestId",
+    as: "states"
+});
+EstadoPedido.belongsTo(Request, {
+    foreignKey: "requestId"
+});
+
+//-------------------------------//
+
+// User <-> EstadoPedido
+User.hasMany(EstadoPedido, {
+    foreignKey: "userId",
+    as: "requestStates"
+});
+EstadoPedido.belongsTo(User, {
+    foreignKey: "userId",
+    as: "changedBy"
+});
+
+//-------------------------------//
+
+// User <-> Logs
+User.hasMany(Logs, {
+    foreignKey: "userId",
+    as: "logs"
+});
+Logs.belongsTo(User, {
+    foreignKey: "userId",
+    as: "user"
+});
+
 //-------------------------------//
 
 }

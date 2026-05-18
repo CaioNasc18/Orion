@@ -30,11 +30,6 @@ const Request = sequelize.define('Request', {
         allowNull: false
     },
 
-    subtype: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-
     openedAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW

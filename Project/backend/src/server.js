@@ -14,6 +14,7 @@ require("./models/requestTypeModel.js");
 require("./models/requestFilesModel.js");
 require("./models/questions.js");
 require("./models/messagesQuestions.js");
+require("./models/requestStatus.js");
 
 // associations
 const applyAssociations = require("./models/associations");
