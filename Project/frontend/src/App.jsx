@@ -8,6 +8,7 @@ import News from "./pages/news";
 import Contact from "./pages/contact";
 import ClientArea from "./pages/clientArea";
 import Login from "./pages/login";
+import AdminDashboard from "./pages/adminDashboard";
 import './App.css';
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/clientArea" element={<ClientArea />} />
-        { <Route path="/login" element={<Login />} /> }
+        <Route path="/login" element={<Login />} />
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );
