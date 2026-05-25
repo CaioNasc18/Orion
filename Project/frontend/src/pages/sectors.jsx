@@ -44,7 +44,7 @@ function SectorsSection() {
         <div style={{ background: "#fff", border: "1px solid #e5e4e7", borderRadius: 12, padding: "40px 36px", textAlign: "center" }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: "#3c8dbc", marginBottom: 12, letterSpacing: 1 }}>PRONTO PARA PROTEGER O SEU SETOR?</h2>
           <p style={{ fontSize: 14, color: "#64748b", marginBottom: 24 }}>Fale connosco e descubra como podemos ajudar a sua organização.</p>
-          <button onClick={() => navigate("/contact")} style={{ background: "linear-gradient(135deg, #2c3e50, #3c8dbc)", border: "none", borderRadius: 8, padding: "12px 32px", fontSize: 14, color: "#fff", fontWeight: 600, cursor: "pointer", letterSpacing: 0.5 }}>
+          <button onClick={() => navigate("/contacts")} style={{ background: "linear-gradient(135deg, #2c3e50, #3c8dbc)", border: "none", borderRadius: 8, padding: "12px 32px", fontSize: 14, color: "#fff", fontWeight: 600, cursor: "pointer", letterSpacing: 0.5 }}>
             FALAR COM UM ESPECIALISTA →
           </button>
         </div>

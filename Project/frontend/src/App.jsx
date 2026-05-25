@@ -5,7 +5,7 @@ import NIS2 from "./pages/NIS2";
 import Sectors from "./pages/sectors";
 import Methodology from "./pages/methodology";
 import News from "./pages/news";
-import Contact from "./pages/contact";
+import Contacts from "./pages/contacts";
 import ClientArea from "./pages/clientArea";
 import Login from "./pages/login";
 import AdminDashboard from "./pages/adminDashboard";
@@ -21,7 +21,7 @@ function App() {
         <Route path="/sectors" element={<Sectors />} />
         <Route path="/methodology" element={<Methodology />} />
         <Route path="/news" element={<News />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contacts" element={<Contacts />} />
         <Route path="/clientArea" element={<ClientArea />} />
         <Route path="/login" element={<Login />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
