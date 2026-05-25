@@ -33,46 +33,38 @@ function NIS2() {
   return (
     <>
       <Navbar />
-      <main style={{ background: "#f8fafc", minHeight: "100vh" }}>
+      <main className="page-main">
 
-        <div className="text-center py-5" style={{ background: "#fff", borderBottom: "1px solid #e5e4e7" }}>
-          <span style={{ display: "inline-block", background: "#eaf4fb", color: "#3c8dbc", fontSize: 11, fontWeight: 700, letterSpacing: 2, padding: "4px 14px", borderRadius: 20, marginBottom: 16, border: "1px solid #bde0f5" }}>
-            LEGISLAÇÃO EUROPEIA
-          </span>
-          <h1 style={{ fontSize: 38, fontWeight: 700, color: "#1e293b", margin: "0 0 12px" }}>Diretiva NIS2 em Portugal</h1>
-          <p style={{ color: "#64748b", fontSize: 15 }}>A Diretiva NIS2 foi transposta para a legislação portuguesa através do Decreto-Lei n.º 125/2025</p>
+        <div className="page-header">
+          <span className="page-badge">LEGISLAÇÃO EUROPEIA</span>
+          <h1 className="page-title">Diretiva NIS2 em Portugal</h1>
+          <p className="page-subtitle">A Diretiva NIS2 foi transposta para a legislação portuguesa através do Decreto-Lei n.º 125/2025</p>
         </div>
 
         <div className="container py-5">
           <div className="row g-4">
             <div className="col-lg-6">
-              <div style={{ background: "linear-gradient(135deg, #1e3a5f, #2c5f8a)", borderRadius: 12, padding: 36, color: "#fff", height: "100%" }}>
-                <h2 style={{ fontSize: 16, fontWeight: 800, letterSpacing: 1, color: "#fff", marginBottom: 18 }}>O QUE É A DIRETIVA NIS2</h2>
-                <p style={{ fontSize: 14, lineHeight: 1.75, color: "#c8dff0", marginBottom: 28 }}>
-                  A Diretiva NIS2 (Network and Information Security Directive 2) é legislação europeia destinada a reforçar a cibersegurança e a resiliência digital das organizações que prestam serviços essenciais ou importantes para a sociedade e economia.
-                </p>
+              <div className="nis2-dark-card">
+                <h2>O QUE É A DIRETIVA NIS2</h2>
+                <p>A Diretiva NIS2 (Network and Information Security Directive 2) é legislação europeia destinada a reforçar a cibersegurança e a resiliência digital das organizações que prestam serviços essenciais ou importantes para a sociedade e economia.</p>
                 {["Ataques de ransomware", "Exploração de vulnerabilidades em infraestruturas críticas", "Espionagem digital", "Ataques a serviços públicos e cadeias de abastecimento"].map((item, i) => (
-                  <div key={i} style={{ display: "flex", gap: 10, fontSize: 13.5, color: "#c8dff0", marginBottom: 12 }}>
-                    <span>⚠️</span>{item}
-                  </div>
+                  <div key={i} className="threat-item"><span>⚠️</span>{item}</div>
                 ))}
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.15)", paddingTop: 20, marginTop: 8 }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: "#fff", marginBottom: 4 }}>Em vigor na União Europeia desde 2023</div>
-                  <div style={{ fontSize: 13, color: "#c8dff0" }}>Transposta para Portugal através do <strong style={{ color: "#fff" }}>Decreto-Lei n.º 125/2025</strong></div>
+                <div className="footer-info">
+                  <div className="label">Em vigor na União Europeia desde 2023</div>
+                  <div className="value">Transposta para Portugal através do <strong style={{ color: "#fff" }}>Decreto-Lei n.º 125/2025</strong></div>
                 </div>
               </div>
             </div>
 
             <div className="col-lg-6">
-              <div style={{ background: "#fff", borderRadius: 12, border: "1px solid #e5e4e7", padding: 36, height: "100%" }}>
-                <h2 style={{ fontSize: 16, fontWeight: 800, letterSpacing: 1, color: "#3c8dbc", marginBottom: 8 }}>A QUEM SE APLICA</h2>
+              <div className="nis2-white-card">
+                <h2>A QUEM SE APLICA</h2>
                 <p style={{ fontSize: 13.5, color: "#64748b", marginBottom: 20 }}>A NIS2 aplica-se a <strong>Entidades Essenciais</strong> e <strong>Entidades Importantes</strong>:</p>
                 {sectors.map((s, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "10px 16px", background: "#f0f7ff", borderRadius: 8, borderLeft: "3px solid #3c8dbc", fontSize: 14, color: "#1e293b", fontWeight: 500, marginBottom: 8 }}>
-                    <span>{s.icon}</span>{s.label}
-                  </div>
+                  <div key={i} className="sector-item"><span>{s.icon}</span>{s.label}</div>
                 ))}
-                <div style={{ background: "#fffbeb", border: "1px solid #fcd34d", borderLeft: "3px solid #f59e0b", borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#475569", lineHeight: 1.65, marginTop: 16 }}>
+                <div className="nis2-criteria-box">
                   <strong>Critérios gerais:</strong> Organizações com <strong>mais de 50 colaboradores</strong> ou com <strong>volume de negócios superior a 10 milhões de euros</strong>.<br />
                   Em Portugal, a autoridade responsável é o <strong>Centro Nacional de Cibersegurança (CNCS)</strong>.
                 </div>
@@ -82,20 +74,20 @@ function NIS2() {
         </div>
 
         <div className="container pb-5">
-          <div style={{ background: "#fff5f5", border: "1px solid #fca5a5", borderRadius: 12, padding: "40px 36px", textAlign: "center" }}>
-            <div style={{ width: 52, height: 52, background: "#dc2626", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", fontSize: 24 }}>⚠️</div>
-            <h2 style={{ fontSize: 20, fontWeight: 800, letterSpacing: 1.5, color: "#1e293b", marginBottom: 8 }}>SANÇÕES POR INCUMPRIMENTO</h2>
+          <div className="sanctions-box">
+            <div className="sanctions-icon">⚠️</div>
+            <h2 style={{ fontSize: 20, fontWeight: 800, letterSpacing: 1.5, marginBottom: 8 }}>SANÇÕES POR INCUMPRIMENTO</h2>
             <p style={{ fontSize: 14, color: "#64748b", marginBottom: 32 }}>As penalizações por não conformidade são significativas</p>
-            <div className="row g-4 text-start mb-4">
+            <div className="row g-4 mb-4">
               {[
                 { title: "ENTIDADES ESSENCIAIS", icon: "🛡️", color: "#dc2626", items: ["Até €10 milhões ou 2% do volume de negócios", "Auditorias obrigatórias", "Ordens de implementação de medidas"] },
                 { title: "ENTIDADES IMPORTANTES", icon: "🗄️", color: "#ea580c", items: ["Até €7 milhões ou 1.4% do volume de negócios", "Supervisão regulatória", "Responsabilização da gestão executiva"] },
               ].map((block, i) => (
                 <div className="col-md-6" key={i}>
-                  <div style={{ background: "#fff", border: "1px solid #e5e4e7", borderLeft: `4px solid ${block.color}`, borderRadius: 8, padding: "20px 24px" }}>
-                    <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1, color: "#1e293b", marginBottom: 14 }}>{block.icon} {block.title}</div>
+                  <div className="sanctions-card" style={{ borderLeft: `4px solid ${block.color}` }}>
+                    <div className="sanctions-card-title">{block.icon} {block.title}</div>
                     {block.items.map((item, j) => (
-                      <div key={j} style={{ display: "flex", gap: 8, fontSize: 13.5, color: "#475569", marginBottom: 8 }}>
+                      <div key={j} className="check-item">
                         <Check color={block.color} />{item}
                       </div>
                     ))}
@@ -103,25 +95,25 @@ function NIS2() {
                 </div>
               ))}
             </div>
-            <button onClick={() => navigate("/contacto")} style={{ background: "linear-gradient(135deg, #2c3e50, #3c8dbc)", border: "none", borderRadius: 8, padding: "12px 32px", fontSize: 14, color: "#fff", fontWeight: 600, cursor: "pointer", letterSpacing: 0.5 }}>
+            <button className="btn-primary-custom" onClick={() => navigate("/contact")}>
               AVALIE A SUA CONFORMIDADE NIS2 →
             </button>
           </div>
         </div>
 
         <div className="container pb-5">
-          <div style={{ background: "#fff", border: "1px solid #e5e4e7", borderRadius: 12, padding: "40px 36px" }}>
+          <div className="section-card">
             <h2 style={{ fontSize: 18, fontWeight: 800, color: "#3c8dbc", textAlign: "center", marginBottom: 36, letterSpacing: 1 }}>COMO AJUDAMOS NA CONFORMIDADE NIS2</h2>
             <div className="row g-4">
               {howWeHelp.map((item, i) => (
                 <div className="col-md-4" key={i}>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
-                    <div style={{ width: 42, height: 42, background: item.bg, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0, borderLeft: `3px solid ${item.color}` }}>
+                    <div className="help-icon" style={{ background: item.bg, borderLeft: `3px solid ${item.color}` }}>
                       {item.icon}
                     </div>
                     <div>
-                      <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1, color: "#1e293b", marginBottom: 4 }}>{item.title}</div>
-                      <div style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}>{item.desc}</div>
+                      <div className="help-title">{item.title}</div>
+                      <div className="help-desc">{item.desc}</div>
                     </div>
                   </div>
                 </div>
