@@ -37,14 +37,12 @@ function Services() {
   return (
     <>
       <Navbar />
-      <main style={{ background: "#f8fafc", minHeight: "100vh" }}>
+      <main className="page-main">
 
-        <div className="text-center py-5" style={{ background: "#fff", borderBottom: "1px solid #e5e4e7" }}>
-          <span style={{ display: "inline-block", background: "#eaf4fb", color: "#3c8dbc", fontSize: 11, fontWeight: 700, letterSpacing: 2, padding: "4px 14px", borderRadius: 20, marginBottom: 16, border: "1px solid #bde0f5" }}>
-            SOLUÇÕES EMPRESARIAIS
-          </span>
-          <h1 style={{ fontSize: 38, fontWeight: 700, color: "#1e293b", margin: "0 0 12px" }}>Os Nossos Serviços</h1>
-          <p style={{ color: "#64748b", maxWidth: 520, margin: "0 auto", fontSize: 15 }}>
+        <div className="page-header">
+          <span className="page-badge">SOLUÇÕES EMPRESARIAIS</span>
+          <h1 className="page-title">Os Nossos Serviços</h1>
+          <p className="page-subtitle">
             Oferecemos uma gama completa de serviços de cibersegurança adaptados às necessidades da sua organização.
           </p>
         </div>
@@ -53,20 +51,16 @@ function Services() {
           <div className="row g-4">
             {services.map((s, i) => (
               <div className="col-lg-4" key={i}>
-                <div style={{ background: "#fff", borderRadius: 12, border: s.highlight ? "2px solid #3c8dbc" : "1px solid #e5e4e7", padding: 28, height: "100%", position: "relative", boxShadow: s.highlight ? "0 4px 24px rgba(60,141,188,0.12)" : "0 1px 4px rgba(0,0,0,0.05)" }}>
-                  {s.highlight && (
-                    <div style={{ position: "absolute", top: -1, right: 24, background: "#3c8dbc", color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1.5, padding: "3px 10px", borderRadius: "0 0 6px 6px" }}>
-                      DESTAQUE
-                    </div>
-                  )}
-                  <div style={{ width: 52, height: 52, background: s.iconBg, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, marginBottom: 20 }}>
+                <div className={`service-card ${s.highlight ? "destaque" : ""}`}>
+                  {s.highlight && <div className="destaque-badge">DESTAQUE</div>}
+                  <div className="service-icon" style={{ background: s.iconBg }}>
                     {s.icon}
                   </div>
-                  <h3 style={{ fontSize: 14, fontWeight: 800, color: "#1e293b", letterSpacing: 0.5, marginBottom: 10 }}>{s.title}</h3>
-                  <p style={{ fontSize: 13.5, color: "#64748b", marginBottom: 20, lineHeight: 1.6 }}>{s.description}</p>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                  <h3 className="service-title">{s.title}</h3>
+                  <p className="service-desc">{s.description}</p>
+                  <ul className="service-items">
                     {s.items.map((item, j) => (
-                      <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13.5, color: "#475569" }}>
+                      <li key={j}>
                         <Check color={s.iconColor} />{item}
                       </li>
                     ))}
@@ -78,9 +72,9 @@ function Services() {
         </div>
 
         <div className="container pb-5">
-          <div style={{ background: "#fff8f5", border: "1px solid #fcd5ba", borderLeft: "4px solid #ea580c", borderRadius: 10, padding: "28px 32px" }}>
-            <h4 style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1.5, color: "#1e293b", marginBottom: 12 }}>PORQUE A CIBERSEGURANÇA É CRÍTICA</h4>
-            <p style={{ fontSize: 14.5, color: "#475569", lineHeight: 1.75, margin: 0 }}>
+          <div className="critical-box">
+            <h4>PORQUE A CIBERSEGURANÇA É CRÍTICA</h4>
+            <p>
               Hoje em dia quase todas as organizações dependem de sistemas digitais para funcionar. Um incidente de segurança pode causar <strong>interrupção de serviços</strong>, <strong>perda de dados</strong>, <strong>impacto financeiro</strong> e <strong>danos reputacionais</strong>. A cibersegurança é hoje uma questão de <strong>continuidade do negócio</strong>.
             </p>
           </div>
