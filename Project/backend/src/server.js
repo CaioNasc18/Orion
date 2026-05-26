@@ -7,8 +7,8 @@ const sequelize = require("./config/database");
 // models
 require("./models/UserType");
 require("./models/User");
-require("./models/Company");
-require("./models/Logs");
+require("./models/company");
+require("./models/logs");
 require("./models/requestModel.js");
 require("./models/requestTypeModel.js");
 require("./models/requestFilesModel.js");
