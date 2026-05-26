@@ -7,7 +7,7 @@ const RequestFile = require("./requestFilesModel");
 const Question = require("./questions");
 const MessageQuestion = require("./messagesQuestions");
 const EstadoPedido = require("./requestStatus");
-const Logs = require("./Logs");
+const Logs = require("./logs");
 
 
 function applyAssociations() {
