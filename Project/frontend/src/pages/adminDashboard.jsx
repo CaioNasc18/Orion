@@ -16,23 +16,14 @@ export default function AdminDashboard() {
 
     const renderContent = () => {
         switch (active) {
-            case "dashboard":
-                return <Dashboard />;
-            case "accounts":
-                return <Accounts />;
-            case "tickets":
-                return <Tickets />;
-            case "requests":
-                return <Requests />;
-            case "docs":
-                return <Docs />;
-            case "settings":
-                return <Settings />;
-            case "content":
-                return <Content />;
-            default:
-                return null;
-
+            case "dashboard": return <Dashboard />;
+            case "accounts": return <Accounts />;
+            case "tickets": return <Tickets />;
+            case "requests": return <Requests />;
+            case "docs": return <Docs />;
+            case "settings": return <Settings />;
+            case "content": return <Content />;
+            default: return null;
         }
     };
 
@@ -40,23 +31,18 @@ export default function AdminDashboard() {
         <div className="d-flex vh-100">
 
             {/* SIDEBAR */}
-            <div className="bg-dark text-white p-3" style={{ width: 250 }}>
+            <div className="bg-dark text-white p-3 d-flex flex-column" style={{ width: 250 }}>
                 <h4 className="mb-4">CyberBox</h4>
-
                 {nav.map((item) => (
                     <button
                         key={item.id}
                         onClick={() => setActive(item.id)}
-                        className={`btn w-100 mb-2 text-start ${active === item.id ? "btn-primary" : "btn-outline-light"
-                            }`}
+                        className={`btn w-100 mb-2 text-start ${active === item.id ? "btn-primary" : "btn-outline-light"}`}
                     >
                         {item.label}
                     </button>
                 ))}
-
-                <div className="mt-auto pt-4 small text-secondary">
-                    © 2026 CyberBox
-                </div>
+                <div className="mt-auto pt-4 small text-secondary">© 2026 CyberBox</div>
             </div>
 
             {/* MAIN */}
@@ -65,14 +51,9 @@ export default function AdminDashboard() {
                 {/* TOPBAR */}
                 <div className="d-flex justify-content-between align-items-center mb-4">
                     <h4 className="m-0 text-capitalize">{active}</h4>
-
                     <div className="d-flex align-items-center gap-2">
                         <span className="badge bg-dark">Admin</span>
-                        <img
-                            src="https://i.pravatar.cc/40"
-                            className="rounded-circle"
-                            alt="admin"
-                        />
+                        <img src="https://i.pravatar.cc/40" className="rounded-circle" alt="admin" />
                     </div>
                 </div>
 
@@ -92,7 +73,6 @@ function Dashboard() {
                 <Card title="Pedidos" value="12" color="warning" />
                 <Card title="Documentos" value="38" color="success" />
             </div>
-
             <div className="card p-3">
                 <h6>Atividade recente</h6>
                 <ul className="list-group list-group-flush">
@@ -105,7 +85,7 @@ function Dashboard() {
     );
 }
 
-/* ───────────────────────── ACCOUNTS ───────────────────────── */
+/* ───────────────────────── CONTAS ───────────────────────── */
 function Accounts() {
     const [accounts, setAccounts] = useState([
         {
@@ -119,28 +99,33 @@ function Accounts() {
     ]);
 
     const emptyCompanyForm = {
-        company: "", status: "Ativo",
-        clients: [{ name: "", email: "", phone: "" }],
-        securityManager:  { name: "", email: "", phone: "" },
-        permanentContact: { name: "", email: "", phone: "" },
-    };
+    company: "", status: "Ativo", companyId: "",
+    clients: [{ name: "", email: "", phone: "" }],
+    securityManager:  { name: "", email: "", phone: "" },
+    permanentContact: { name: "", email: "", phone: "" },
+};
+    
     const emptyPersonForm = { name: "", email: "", phone: "", password: "" };
 
-
-    const [showForm,    setShowForm]    = useState(false);
-    const [formTab,     setFormTab]     = useState("company");
+    const [showForm, setShowForm] = useState(false);
+    const [formTab, setFormTab] = useState("company");
     const [companyForm, setCompanyForm] = useState(emptyCompanyForm);
-    const [adminForm,   setAdminForm]   = useState(emptyPersonForm);
+    const [adminForm, setAdminForm] = useState(emptyPersonForm);
     const [managerForm, setManagerForm] = useState(emptyPersonForm);
-    const [expanded,    setExpanded]    = useState(null);
+    const [expanded, setExpanded] = useState(null);
 
-    const setField    = (f, v) => setCompanyForm((p) => ({ ...p, [f]: v }));
+    const setField = (f, v) => setCompanyForm((p) => ({ ...p, [f]: v }));
     const setSubField = (s, f, v) => setCompanyForm((p) => ({ ...p, [s]: { ...p[s], [f]: v } }));
-    const setClient   = (i, f, v) => setCompanyForm((p) => {
+    const setClient = (i, f, v) => setCompanyForm((p) => {
         const c = [...p.clients]; c[i] = { ...c[i], [f]: v }; return { ...p, clients: c };
     });
-    const addClient    = () => setCompanyForm((p) => ({ ...p, clients: [...p.clients, { name: "", email: "", phone: "" }] }));
+    const addClient = () => setCompanyForm((p) => ({ ...p, clients: [...p.clients, { name: "", email: "", phone: "" }] }));
     const removeClient = (i) => setCompanyForm((p) => ({ ...p, clients: p.clients.filter((_, idx) => idx !== i) }));
+
+    const generatePassword = () => {
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+        return Array.from({ length: 12 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+    };
 
     const handleCreate = () => {
         if (formTab === "company" && companyForm.company) {
@@ -165,15 +150,17 @@ function Accounts() {
                 </button>
             </div>
 
+            {/* ── Formulário com tabs ── */}
             {showForm && (
                 <div className="border p-3 mb-4 bg-white">
                     <h6 className="mb-3">Nova Conta</h6>
 
+                    {/* Tabs internas */}
                     <ul className="nav nav-tabs mb-3">
                         {[
                             { id: "company", label: "Empresa / Cliente" },
-                            { id: "admin",   label: "Administrador"     },
-                            { id: "manager", label: "Gestor"            },
+                            { id: "admin", label: "Administrador" },
+                            { id: "manager", label: "Gestor" },
                         ].map((t) => (
                             <li className="nav-item" key={t.id}>
                                 <button
@@ -188,24 +175,43 @@ function Accounts() {
 
                     {formTab === "company" && (
                         <>
+                            {/* ── Escolha inicial ── */}
                             <div className="row g-2 mb-3">
                                 <div className="col-md-6">
-                                    <label className="form-label fw-semibold" style={{ fontSize: 12 }}>Nome da Empresa *</label>
-                                    <input className="form-control form-control-sm" placeholder="Ex: TechCorp Lda"
-                                        value={companyForm.company} onChange={(e) => setField("company", e.target.value)} />
-                                </div>
-                                <div className="col-md-3">
-                                    <label className="form-label fw-semibold" style={{ fontSize: 12 }}>Estado</label>
+                                    <label className="form-label fw-semibold" style={{ fontSize: 12 }}>Empresa *</label>
                                     <select className="form-select form-select-sm"
-                                        value={companyForm.status} onChange={(e) => setField("status", e.target.value)}>
-                                        <option value="Ativo">Ativo</option>
-                                        <option value="Pendente">Pendente</option>
-                                        <option value="Inativo">Inativo</option>
+                                        value={companyForm.companyId || ""}
+                                        onChange={(e) => setField("companyId", e.target.value)}>
+                                        <option value="">+ Criar nova empresa</option>
+                                        {accounts.map((a) => (
+                                            <option key={a.id} value={a.id}>{a.company}</option>
+                                        ))}
                                     </select>
                                 </div>
+
+                                {/* Estado só aparece se for empresa nova */}
+                                {!companyForm.companyId && (
+                                    <>
+                                        <div className="col-md-4">
+                                            <label className="form-label fw-semibold" style={{ fontSize: 12 }}>Nome da Empresa *</label>
+                                            <input className="form-control form-control-sm" placeholder="Ex: TechCorp Lda"
+                                                value={companyForm.company} onChange={(e) => setField("company", e.target.value)} />
+                                        </div>
+                                        <div className="col-md-2">
+                                            <label className="form-label fw-semibold" style={{ fontSize: 12 }}>Estado</label>
+                                            <select className="form-select form-select-sm"
+                                                value={companyForm.status} onChange={(e) => setField("status", e.target.value)}>
+                                                <option value="Ativo">Ativo</option>
+                                                <option value="Pendente">Pendente</option>
+                                                <option value="Inativo">Inativo</option>
+                                            </select>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <hr />
 
+                            {/* Clientes */}
                             <div className="mb-3">
                                 <div className="d-flex justify-content-between align-items-center mb-2">
                                     <label className="fw-semibold" style={{ fontSize: 13 }}>Clientes</label>
@@ -237,52 +243,56 @@ function Accounts() {
                                     </div>
                                 ))}
                             </div>
-                            <hr />
 
-                            <div className="mb-3">
-                                <label className="fw-semibold d-block mb-2" style={{ fontSize: 13 }}>Responsável de Segurança</label>
-                                <div className="row g-2">
-                                    {["name", "email", "phone"].map((f) => (
-                                        <div className="col-md-4" key={f}>
-                                            <label className="form-label" style={{ fontSize: 11 }}>
-                                                {f === "name" ? "Nome" : f === "email" ? "Email" : "Telefone"}
-                                            </label>
-                                            <input className="form-control form-control-sm"
-                                                placeholder={f === "name" ? "Nome" : f === "email" ? "email@empresa.com" : "+351 910 000 000"}
-                                                value={companyForm.securityManager[f]}
-                                                onChange={(e) => setSubField("securityManager", f, e.target.value)} />
+                            {/* Responsável e Contacto — só para empresa nova */}
+                            {!companyForm.companyId && (
+                                <>
+                                    <hr />
+                                    <div className="mb-3">
+                                        <label className="fw-semibold d-block mb-2" style={{ fontSize: 13 }}>Responsável de Segurança</label>
+                                        <div className="row g-2">
+                                            {["name", "email", "phone"].map((f) => (
+                                                <div className="col-md-4" key={f}>
+                                                    <label className="form-label" style={{ fontSize: 11 }}>
+                                                        {f === "name" ? "Nome" : f === "email" ? "Email" : "Telefone"}
+                                                    </label>
+                                                    <input className="form-control form-control-sm"
+                                                        placeholder={f === "name" ? "Nome" : f === "email" ? "email@empresa.com" : "+351 910 000 000"}
+                                                        value={companyForm.securityManager[f]}
+                                                        onChange={(e) => setSubField("securityManager", f, e.target.value)} />
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <hr />
-
-                            <div className="mb-3">
-                                <label className="fw-semibold d-block mb-2" style={{ fontSize: 13 }}>Contacto Permanente</label>
-                                <div className="row g-2">
-                                    {["name", "email", "phone"].map((f) => (
-                                        <div className="col-md-4" key={f}>
-                                            <label className="form-label" style={{ fontSize: 11 }}>
-                                                {f === "name" ? "Nome" : f === "email" ? "Email" : "Telefone"}
-                                            </label>
-                                            <input className="form-control form-control-sm"
-                                                placeholder={f === "name" ? "Nome" : f === "email" ? "email@empresa.com" : "+351 910 000 000"}
-                                                value={companyForm.permanentContact[f]}
-                                                onChange={(e) => setSubField("permanentContact", f, e.target.value)} />
+                                    </div>
+                                    <hr />
+                                    <div className="mb-3">
+                                        <label className="fw-semibold d-block mb-2" style={{ fontSize: 13 }}>Contacto Permanente</label>
+                                        <div className="row g-2">
+                                            {["name", "email", "phone"].map((f) => (
+                                                <div className="col-md-4" key={f}>
+                                                    <label className="form-label" style={{ fontSize: 11 }}>
+                                                        {f === "name" ? "Nome" : f === "email" ? "Email" : "Telefone"}
+                                                    </label>
+                                                    <input className="form-control form-control-sm"
+                                                        placeholder={f === "name" ? "Nome" : f === "email" ? "email@empresa.com" : "+351 910 000 000"}
+                                                        value={companyForm.permanentContact[f]}
+                                                        onChange={(e) => setSubField("permanentContact", f, e.target.value)} />
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
+                                    </div>
+                                </>
+                            )}
                         </>
                     )}
 
+                    {/* ── Tab: Admin e Gestor ── */}
                     {(formTab === "admin" || formTab === "manager") && (
                         <div className="row g-3">
                             {[
-                                { f: "name",     label: "Nome Completo", type: "text",     ph: formTab === "admin" ? "Nome do administrador" : "Nome do gestor" },
-                                { f: "email",    label: "Email",         type: "email",    ph: formTab === "admin" ? "admin@cyberbox.pt" : "gestor@cyberbox.pt" },
-                                { f: "phone",    label: "Telefone",      type: "tel",      ph: "+351 910 000 000"    },
-                                { f: "password", label: "Password",      type: "password", ph: "Mínimo 8 caracteres" },
+                                { f: "name", label: "Nome Completo", type: "text", ph: formTab === "admin" ? "Nome do administrador" : "Nome do gestor" },
+                                { f: "email", label: "Email", type: "email", ph: formTab === "admin" ? "admin@cyberbox.pt" : "gestor@cyberbox.pt" },
+                                { f: "phone", label: "Telefone", type: "tel", ph: "+351 910 000 000" },
                             ].map(({ f, label, type, ph }) => (
                                 <div className="col-md-6" key={f}>
                                     <label className="form-label fw-semibold" style={{ fontSize: 12 }}>{label}</label>
@@ -294,6 +304,32 @@ function Accounts() {
                                         } />
                                 </div>
                             ))}
+
+                            {/* Campo password com botão Gerar */}
+                            <div className="col-md-6">
+                                <label className="form-label fw-semibold" style={{ fontSize: 12 }}>Password</label>
+                                <div className="input-group input-group-sm">
+                                    <input
+                                        type="text"
+                                        className="form-control form-control-sm"
+                                        placeholder="Clique para Gerar"
+                                        readOnly
+                                        value={formTab === "admin" ? adminForm.password : managerForm.password}
+                                    />
+                                    <button
+                                        className="btn btn-outline-secondary"
+                                        type="button"
+                                        onClick={() => {
+                                            const pwd = generatePassword();
+                                            formTab === "admin"
+                                                ? setAdminForm({ ...adminForm, password: pwd })
+                                                : setManagerForm({ ...managerForm, password: pwd });
+                                        }}
+                                    >
+                                        Gerar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     )}
 
@@ -303,7 +339,7 @@ function Accounts() {
                 </div>
             )}
 
-            {/* Tabela */}
+            {/* ── Tabela ── */}
             <table className="table">
                 <thead>
                     <tr>
@@ -361,12 +397,12 @@ function Accounts() {
         </div>
     );
 }
+
 /* ───────────────────────── TICKETS ───────────────────────── */
 function Tickets() {
     return (
         <div className="card p-3">
             <h5>Tickets</h5>
-
             <ul className="list-group mt-3">
                 <li className="list-group-item">#T001 - VPN falhou</li>
                 <li className="list-group-item">#T002 - Relatório em falta</li>
@@ -400,17 +436,14 @@ function Settings() {
     return (
         <div className="card p-3">
             <h5>Configurações</h5>
-
             <div className="mb-3">
                 <label className="form-label">Nome</label>
                 <input className="form-control" defaultValue="Admin User" />
             </div>
-
             <div className="mb-3">
                 <label className="form-label">Email</label>
                 <input className="form-control" defaultValue="admin@cyberbox.pt" />
             </div>
-
             <button className="btn btn-dark">Guardar</button>
         </div>
     );
@@ -428,21 +461,27 @@ function Card({ title, value, color }) {
     );
 }
 
+/* ───────────────────────── CONTENT ───────────────────────── */
 function Content() {
-    const pages = [
+    const [pages, setPages] = useState([
         { id: 1, page: "Início", section: "Hero", content: "Segurança cibernética para empresas modernas.", updated: "10/05/2026" },
         { id: 2, page: "Home", section: "Sobre nós", content: "A CyberBox protege empresas desde 2018...", updated: "08/05/2026" },
         { id: 3, page: "Serviços", section: "Intro", content: "Oferecemos soluções completas de cibersegurança.", updated: "02/05/2026" },
         { id: 4, page: "NIS2", section: "Descrição", content: "A diretiva NIS2 entra em vigor em 2024...", updated: "28/04/2026" },
         { id: 5, page: "Contacto", section: "Texto", content: "Entre em contacto connosco para mais informações.", updated: "20/04/2026" },
-    ];
+    ]);
 
     const [editing, setEditing] = useState(null);
     const [text, setText] = useState("");
 
-    const handleEdit = (item) => {
-        setEditing(item.id);
-        setText(item.content);
+    const handleEdit = (item) => { setEditing(item.id); setText(item.content); };
+
+    const handleSave = (id) => {
+        setPages(pages.map(p => p.id === id
+            ? { ...p, content: text, updated: new Date().toLocaleDateString("pt-PT") }
+            : p
+        ));
+        setEditing(null);
     };
 
     return (
@@ -451,16 +490,9 @@ function Content() {
                 <h5 className="mb-0">Gestão de Conteúdo</h5>
                 <span className="badge bg-secondary">{pages.length} secções</span>
             </div>
-
             <table className="table">
                 <thead>
-                    <tr>
-                        <th>Página</th>
-                        <th>Secção</th>
-                        <th>Conteúdo</th>
-                        <th>Atualizado</th>
-                        <th>Ação</th>
-                    </tr>
+                    <tr><th>Página</th><th>Secção</th><th>Conteúdo</th><th>Atualizado</th><th>Ação</th></tr>
                 </thead>
                 <tbody>
                     {pages.map((item) => (
@@ -469,42 +501,21 @@ function Content() {
                             <td>{item.section}</td>
                             <td style={{ maxWidth: 250 }}>
                                 {editing === item.id ? (
-                                    <textarea
-                                        className="form-control form-control-sm"
-                                        value={text}
-                                        onChange={(e) => setText(e.target.value)}
-                                        rows={2}
-                                    />
+                                    <textarea className="form-control form-control-sm" rows={2}
+                                        value={text} onChange={(e) => setText(e.target.value)} />
                                 ) : (
-                                    <span className="text-muted" style={{ fontSize: 13 }}>
-                                        {item.content}
-                                    </span>
+                                    <span className="text-muted" style={{ fontSize: 13 }}>{item.content}</span>
                                 )}
                             </td>
                             <td style={{ fontSize: 13, color: "#6b7280" }}>{item.updated}</td>
                             <td>
                                 {editing === item.id ? (
                                     <>
-                                        <button
-                                            className="btn btn-sm btn-success me-1"
-                                            onClick={() => setEditing(null)}
-                                        >
-                                            Guardar
-                                        </button>
-                                        <button
-                                            className="btn btn-sm btn-outline-secondary"
-                                            onClick={() => setEditing(null)}
-                                        >
-                                            Cancelar
-                                        </button>
+                                        <button className="btn btn-sm btn-success me-1" onClick={() => handleSave(item.id)}>Guardar</button>
+                                        <button className="btn btn-sm btn-outline-secondary" onClick={() => setEditing(null)}>Cancelar</button>
                                     </>
                                 ) : (
-                                    <button
-                                        className="btn btn-sm btn-outline-dark"
-                                        onClick={() => handleEdit(item)}
-                                    >
-                                        Editar
-                                    </button>
+                                    <button className="btn btn-sm btn-outline-dark" onClick={() => handleEdit(item)}>Editar</button>
                                 )}
                             </td>
                         </tr>
