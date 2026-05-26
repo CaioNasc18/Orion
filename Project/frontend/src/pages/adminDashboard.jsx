@@ -85,7 +85,7 @@ function Dashboard() {
     );
 }
 
-/* ───────────────────────── CONTAS ───────────────────────── */
+/* ───────────────────────── ACCOUNTS ───────────────────────── */
 function Accounts() {
     const [accounts, setAccounts] = useState([
         {
@@ -99,17 +99,19 @@ function Accounts() {
     ]);
 
     const emptyCompanyForm = {
-    company: "", status: "Ativo", companyId: "",
-    clients: [{ name: "", email: "", phone: "" }],
-    securityManager:  { name: "", email: "", phone: "" },
-    permanentContact: { name: "", email: "", phone: "" },
-};
-    
+        company: "", status: "Ativo", companyId: "",
+        clients: [{ name: "", email: "", phone: "" }],
+        securityManager: { name: "", email: "", phone: "" },
+        permanentContact: { name: "", email: "", phone: "" },
+    };
+
     const emptyPersonForm = { name: "", email: "", phone: "", password: "" };
 
     const [showForm, setShowForm] = useState(false);
     const [formTab, setFormTab] = useState("company");
     const [companyForm, setCompanyForm] = useState(emptyCompanyForm);
+    const [admins, setAdmins] = useState([]);
+    const [managers, setManagers] = useState([]);
     const [adminForm, setAdminForm] = useState(emptyPersonForm);
     const [managerForm, setManagerForm] = useState(emptyPersonForm);
     const [expanded, setExpanded] = useState(null);
@@ -132,10 +134,23 @@ function Accounts() {
             setAccounts([...accounts, { id: Date.now(), ...companyForm }]);
             setCompanyForm(emptyCompanyForm);
         } else if (formTab === "admin" && adminForm.name && adminForm.email) {
-            alert(`Admin "${adminForm.name}" criado!`);
+            setAdmins((prev) => [
+                ...prev,
+                {
+                    id: Date.now(),
+                    ...adminForm,
+                },
+            ]);
             setAdminForm(emptyPersonForm);
-        } else if (formTab === "manager" && managerForm.name && managerForm.email) {
-            alert(`Gestor "${managerForm.name}" criado!`);
+        }
+        else if (formTab === "manager" && managerForm.name && managerForm.email) {
+            setManagers((prev) => [
+                ...prev,
+                {
+                    id: Date.now(),
+                    ...managerForm,
+                },
+            ]);
             setManagerForm(emptyPersonForm);
         }
         setShowForm(false);
@@ -393,6 +408,7 @@ function Accounts() {
                         </>
                     ))}
                 </tbody>
+                
             </table>
         </div>
     );
