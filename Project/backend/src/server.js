@@ -17,8 +17,8 @@ require("./models/messagesQuestions.js");
 require("./models/requestStatus.js");
 
 // 1. IMPORTAR AS SUAS ROTAS AQUI (Atenção ao caminho dos ficheiros!)
-const requestRoutes = require("./src/routes/requestRoutes");
-const userRoutes = require("./src/routes/userRoutes");
+const requestRoutes = require("./routes/requestRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 // associations
 const applyAssociations = require("./models/associations");
