@@ -10,7 +10,7 @@ const sectors = [
   { icon: "🌐", label: "Infraestruturas digitais" },
   { icon: "🛡️", label: "Administração pública" },
 ];
- q
+
 const howWeHelp = [
   { color: "#3c8dbc", bg: "#eaf4fb", icon: "🛡️", title: "ANÁLISE DE ENQUADRAMENTO", desc: "Determinamos se a sua entidade está abrangida pela NIS2" },
   { color: "#16a34a", bg: "#eaf7ee", icon: "📊", title: "AVALIAÇÃO DE MATURIDADE", desc: "Análise do nível atual de cibersegurança" },
