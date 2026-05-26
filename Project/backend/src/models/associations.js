@@ -12,7 +12,7 @@ const Logs = require("./Logs");
 
 function applyAssociations() {
 
-  // UserType <-> User 
+  // UserType <-> User
   UserType.hasMany(User, {
     foreignKey: "id_tipo",
   });
