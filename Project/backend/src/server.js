@@ -30,14 +30,15 @@ app.use(express.json());
 
 applyAssociations();
 
-// ✅ servidor só arranca depois do sync e seeds
+const PORT = process.env.PORT || 3000;
+
 sequelize.sync({ alter: true }).then(async () => {
   console.log("Banco sincronizado 🚀");
 
   await seedUserTypes();
   await seedRequestTypes();
 
-  app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000 🚀");
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT} 🚀`);
   });
 });
