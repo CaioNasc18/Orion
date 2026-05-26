@@ -1,4 +1,7 @@
-const { Request, RequestType, User } = require('../models');
+// ✅ Correção: Importando os modelos diretamente dos seus ficheiros individuais
+const Request = require('../models/requestModel');
+const RequestType = require('../models/requestTypeModel');
+const User = require('../models/User');
 
 //
 // GET ALL REQUESTS
