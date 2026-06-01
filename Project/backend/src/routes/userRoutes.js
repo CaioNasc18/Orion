@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/userController");
  
-// Criar conta (novo utilizador)
+// Criar conta
 router.post("/users", controller.createUser);
+ 
+// Login
+router.post("/users/login", controller.loginUser);
  
 // Atualizar utilizador
 router.put("/users/:id", controller.updateUser);
