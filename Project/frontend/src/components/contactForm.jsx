@@ -20,7 +20,7 @@ export default function ContactForm() {
         e.preventDefault();
 
         try {
-            const res = await fetch("https://orion-dewp.onrender.com/", {
+            const res = await fetch("https://orion-dewp.onrender.com/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
