@@ -1,6 +1,6 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://orion-certo.onrender.com";
 
 export const getHello = async () => {
   const response = await fetch(API_URL);
   return await response.text();
-};
+}; 

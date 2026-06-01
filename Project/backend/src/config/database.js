@@ -1,20 +1,15 @@
-const { Sequelize } = require("sequelize");
+var Sequelize = require("sequelize");
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASS,
-  {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 5432, // Garante que usa a porta do .env
-    dialect: "postgres",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false, // Necessário para evitar erros de certificado autoassinado no Neon
-      },
+const sequelize = new Sequelize("neondb", "neondb_owner", "npg_4FerV7NLxBMH", {
+  host: "ep-dry-lab-apdvreuv-pooler.c-7.us-east-1.aws.neon.tech",
+  port: 5432,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
     },
-  }
-);
+  },
+});
 
 module.exports = sequelize;

@@ -1,8 +1,8 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/sections/Hero";
-import Context from "../components/sections/Context";
-import About from "../components/sections/About";
-import Footer from "../components/Footer";
+import Navbar from "../components/navbar";
+import Hero from "../components/sections/hero";
+import Context from "../components/sections/context";
+import About from "../components/sections/about";
+import Footer from "../components/footer";
 
 function Home() {
   return (

@@ -1,6 +1,6 @@
 function Hero() {
   return (
-    <section 
+    <section
       className="text-white py-5"
       style={{ background: "linear-gradient(to right, #2c3e50, #3c8dbc)" }}
     >

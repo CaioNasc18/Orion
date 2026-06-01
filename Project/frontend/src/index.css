@@ -353,3 +353,106 @@ p { margin: 0; }
   color: var(--text-muted);
   line-height: 1.5;
 }
+
+/*login*/
+/* Fundo geral */
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+/* Painel azul lateral */
+.sidebar-panel {
+    background: linear-gradient(180deg, #2c3e50 0%, #3c8dbc 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ícone */
+.shield-icon {
+    color: #ffffff;
+}
+
+/* Título */
+.cyberbox-title {
+    font-size: 2.3rem;
+    letter-spacing: 1px;
+}
+
+/* Texto lateral */
+.sidebar-description {
+    opacity: 0.9;
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+/* Lista */
+.sidebar-list li {
+    margin-bottom: 12px;
+    opacity: 0.95;
+    font-size: 0.95rem;
+}
+
+/* Footer */
+.sidebar-footer {
+    opacity: 0.7;
+}
+
+/* Parte do formulário */
+.form-section {
+    background: #f8f9fa;
+}
+
+/* Caixa login */
+.login-container {
+    max-width: 420px;
+    width: 100%;
+    margin: auto;
+}
+
+/* Labels */
+.form-label-custom {
+    font-size: 0.9rem;
+}
+
+/* Inputs */
+.form-control {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    transition: 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.15rem rgba(13,110,253,.2);
+}
+
+/* Botão login */
+.login-button {
+    background:#3c8dbc;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.login-button:hover {
+    background: #2c3e50;
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+/* Forgot password */
+.forgot-password {
+    color: #0d6efd;
+    font-size: 0.9rem;
+}
+
+/* Texto final */
+.register-text a {
+    color: #0d6efd;
+    font-weight: 600;
+}

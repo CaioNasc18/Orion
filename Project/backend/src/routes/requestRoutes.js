@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/requestController");
 
+
+const requestController = require("../controllers/requestController");
 
 router.get('/requests', requestController.request_list);
 router.get('/requests/:id', requestController.request_detail);

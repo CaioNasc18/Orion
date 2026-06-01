@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
+import '../index.css';
 
 function Login() {
     const navigate = useNavigate();
@@ -90,7 +90,7 @@ function Login() {
 
                             <button
                                 type="submit"
-                                className="btn w-100 text-white mb-3 login-button"
+                                className="login-button w-100 text-white mb-3"
                             >
                                 Entrar
                             </button>
