@@ -350,12 +350,32 @@ function AdminsTable({ admins, setAdmins }) {
         return Array.from({ length: 12 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
     };
 
-    const handleCreate = () => {
-        if (!form.name || !form.email) return;
-        setAdmins((prev) => [...prev, { id: Date.now(), ...form }]);
-        setForm(emptyForm);
-        setShowForm(false);
-    };
+const handleCreate = async () => {
+    if (!form.name || !form.email) return;
+    try {
+        const res = await fetch("https://orion-dewp.onrender.com/api/users", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: form.name,
+                email: form.email,
+                password: form.password,
+                telephone: form.phone,
+                id_tipo: 1
+            })
+        });
+        const data = await res.json();
+        if (data.success) {
+            setAdmins((prev) => [...prev, { id: data.user.id, ...form }]);
+            setForm(emptyForm);
+            setShowForm(false);
+        } else {
+            alert(data.message);
+        }
+    } catch (err) {
+        alert("Erro ao criar administrador.");
+    }
+};
 
     const startEdit = (a) => { setEditingId(a.id); setEditForm({ ...a }); setShowForm(false); };
     const cancelEdit = () => { setEditingId(null); setEditForm(null); };
